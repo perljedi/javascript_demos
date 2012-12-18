@@ -1,6 +1,7 @@
 WEBDOC=~/docs
 STYLEDIR=$(WEBDOC)/css
 SCRIPTDIR=$(WEBDOC)/js
+DOCTEST=$(WEBDOC)/test
 CP=/bin/cp
 MKDIR=/bin/mkdir
 
@@ -12,6 +13,11 @@ $(STYLEDIR): $(WEBDOC)
 
 $(SCRIPTDIR): $(WEBDOC)
 	if [ ! -d $@ ]; then $(MKDIR) $(SCRIPTDIR); fi
+
+$(DOCTEST): $(WEBDOC)
+	if [ ! -d $@ ]; then $(MKDIR) $(DOCTEST); fi
+
+directories: $(WEBDOC) $(DOCTEST) $(STYLEDIR) $(SCRIPTDIR)
 
 $(STYLEDIR)/%.css : $(STYLEDIR)
 	$(CP) css/$(@F) $@
@@ -28,8 +34,12 @@ life5: $(STYLEDIR)/life5.css $(SCRIPTDIR)/life5.js
 fallingblocks: $(STYLEDIR)/FallingBlocks.css $(SCRIPTDIR)/FallingBlocks.js
 	$(CP) html/FallingBlocks.htm $(WEBDOC)
 
-all: life4 life5 fallingblocks
+conway: $(SCRIPTDIR)/LifeBoard.js $(SCRIPTDIR)/LifeCell.js $(SCRIPTDIR)/LifeInterface.js $(STYLEDIR)/life5.css
+	$(CP) html/ConwaysGameOfLife.htm $(WEBDOC)
 
-default: all
+conway_test: $(DOCTEST) conway
+	$(CP) tests/ConwaysLifeTests.htm $(WEBDOC)
+	$(CP) tests/js/*.js $(DOCTEST)
 
 
+all: conway conway_test fallingblocks life4 life5
