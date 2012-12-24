@@ -1,9 +1,13 @@
-WEBDOC=~/docs
+BUILDDIR=./build/
+TARGET=$(HOME)/
+WEBDOC=$(BUILDDIR)/docs
 STYLEDIR=$(WEBDOC)/css
 SCRIPTDIR=$(WEBDOC)/js
-DOCTEST=$(WEBDOC)/test
+DOCTEST=$(SCRIPTDIR)/spec
 CP=/bin/cp
-MKDIR=/bin/mkdir
+MKDIR=/bin/mkdir -p
+
+.DEFAULT_GOAL=build
 
 $(WEBDOC):
 	if [ ! -d $@ ]; then $(MKDIR) $(WEBDOC); fi
@@ -39,7 +43,18 @@ conway: $(SCRIPTDIR)/LifeBoard.js $(SCRIPTDIR)/LifeCell.js $(SCRIPTDIR)/LifeInte
 
 conway_test: $(DOCTEST) conway
 	$(CP) tests/ConwaysLifeTests.htm $(WEBDOC)
-	$(CP) tests/js/*.js $(DOCTEST)
+	$(CP) tests/spec/*.js $(DOCTEST)
 
+build: conway conway_test fallingblocks life4 life5
 
-all: conway conway_test fallingblocks life4 life5
+install: build
+	if [ -d $(SCRIPTDIR)/node_modules ]; then rm -rf $(SCRIPTDIR)/node_modules; fi
+	$(CP) -r $(BUILDDIR)/* $(TARGET)
+
+.ONESHELL:
+test: build
+	$(CP) tests/grunt.js $(SCRIPTDIR);
+	cd $(SCRIPTDIR); \
+	npm install grunt-jasmine-node; \
+	grunt
+

@@ -1,3 +1,6 @@
+require("../LifeBoard.js");
+require("../LifeCell.js");
+
 describe("The Game of Life", function(){
     var board;
     beforeEach(function(){

@@ -1,5 +1,5 @@
-require("../../js/LifeBoard.js");
-require("../../js/LifeCell.js");
+require("../LifeBoard.js");
+require("../LifeCell.js");
 
 describe("LifeBoard", function() {
     var board;
