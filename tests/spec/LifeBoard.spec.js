@@ -1,3 +1,6 @@
+require("../../js/LifeBoard.js");
+require("../../js/LifeCell.js");
+
 describe("LifeBoard", function() {
     var board;
     beforeEach(function(){

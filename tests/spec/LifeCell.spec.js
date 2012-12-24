@@ -1,3 +1,5 @@
+require("../../js/LifeCell.js");
+
 describe("LifeCell", function() {
     var cell;
     beforeEach(function() { 

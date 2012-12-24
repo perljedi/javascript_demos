@@ -1,8 +1,10 @@
-function LifeBoard(cols, rows) {
+require("./LifeCell.js");
+
+LifeBoard = function(cols, rows) {
 	var currentItteration=0;
     var width= cols ? cols : 6;
     var height= rows ? rows : 6;
-    var grid = new Array();
+    var grid = [];
 
     this.getWidth = function(){
        return width;
@@ -14,14 +16,14 @@ function LifeBoard(cols, rows) {
 
     this.itteration = function(){
         return currentItteration;
-    }
+    };
 
     this.setWidth = function(newWidth){
         if(newWidth < width){
             grid.length=newWidth;
         }else{
             for(var c=width; c<newWidth; c++){
-                var column = new Array();
+                var column = [];
                 for(var r=0; r<height; r++){
                     var nCell = new LifeCell();
                     column.push(nCell);
@@ -61,7 +63,7 @@ function LifeBoard(cols, rows) {
         return grid[x][y];
     };
     for(var c=0; c<width; c++){
-        var column = new Array();
+        var column = [];
         for(var r=0; r<height; r++){
             var nCell = new LifeCell();
             column.push(nCell);
@@ -74,7 +76,7 @@ function LifeBoard(cols, rows) {
                 grid[c][r].getNeighbors().length=0;
                 for(var rc=-1; rc<2; rc++){
                     for(var rh=-1; rh<2; rh++){
-                        if(rh!=0 || rc!=0){
+                        if(! (rh === 0 && rc === 0)){
                             grid[c][r].getNeighbors().push(this.getCell(c+rc, r+rh));
                         }
                     }
@@ -85,7 +87,7 @@ function LifeBoard(cols, rows) {
     this.populateNeighbors();
     this.evolve = function() {
         currentItteration++;
-        var nextState = new Array();
+        var nextState = [];
         var cells = this.getCells();
         while(cells.hasMore()){
             var mc = cells.getNext();
@@ -112,5 +114,10 @@ function LifeBoard(cols, rows) {
                     if(++r == height){ c++; r=0; } 
                     return el; 
                 }};
-    }
-}
+    };
+};
+
+LifeBoard.prototype.isA = function(){
+    return "LifeBoard";
+};
+

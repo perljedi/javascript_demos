@@ -1,5 +1,5 @@
-function LifeCell(initialState) {
-	var neighbors = new Array();
+LifeCell = function(initialState) {
+	var neighbors = [];
 	var lifeStatus = false;
 	if(initialState){
 		lifeStatus = true;
@@ -32,12 +32,14 @@ function LifeCell(initialState) {
     this.revive = function() { 
         lifeStatus = true;
     };
-    this.isAlive = function(){ return lifeStatus };
+    this.isAlive = function(){ return lifeStatus; };
     this.draw  = function() {
         if(lifeStatus){
             return " 1 ";
         }else{
             return " 0 ";
         }
-    }
-}
+    };
+};
+
+LifeCell.prototype.isA=function(){return "LifeCell";};

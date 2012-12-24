@@ -2,133 +2,133 @@ jQuery.noConflict();
 var Blocks = new Array();
 var BlockLayout = new Array();
 BlockLayout[0] = new Array(new Array(
-												 new Array(3,2),
-												 new Array(1,1),
-												 new Array(2,1),
-												 new Array(2,2),
-												 new Array(3,2)),
-									new Array(
-												 new Array(2,3),
-												 new Array(2,1),
-												 new Array(2,2),
-												 new Array(1,2),
-												 new Array(1,3))
-									);
+                         new Array(3,2),
+                         new Array(1,1),
+                         new Array(2,1),
+                         new Array(2,2),
+                         new Array(3,2)),
+            new Array(
+                         new Array(2,3),
+                         new Array(2,1),
+                         new Array(2,2),
+                         new Array(1,2),
+                         new Array(1,3))
+            );
 BlockLayout[1] = new Array(new Array(
-												 new Array(3,2),
-												 new Array(2,1),
-												 new Array(3,1),
-												 new Array(2,2),
-												 new Array(1,2)),
-									new Array(
-												 new Array(2,3),
-												 new Array(1,1),
-												 new Array(1,2),
-												 new Array(2,2),
-												 new Array(2,3))
-									);
+                         new Array(3,2),
+                         new Array(2,1),
+                         new Array(3,1),
+                         new Array(2,2),
+                         new Array(1,2)),
+            new Array(
+                         new Array(2,3),
+                         new Array(1,1),
+                         new Array(1,2),
+                         new Array(2,2),
+                         new Array(2,3))
+            );
 BlockLayout[2] = new Array(new Array(
-												 new Array(2,2),
-												 new Array(1,1),
-												 new Array(1,2),
-												 new Array(2,1),
-												 new Array(2,2))
+                         new Array(2,2),
+                         new Array(1,1),
+                         new Array(1,2),
+                         new Array(2,1),
+                         new Array(2,2))
 								   );
 BlockLayout[3] = new Array(new Array(
-												 new Array(2,3),
-												 new Array(1,1),
-												 new Array(1,2),
-												 new Array(1,3),
-												 new Array(2,3)),
-									new Array(
-												 new Array(3,2),
-												 new Array(1,1),
-												 new Array(1,2),
-												 new Array(2,1),
-												 new Array(3,1)),
-									new Array(
-												 new Array(2,3),
-												 new Array(1,1),
-												 new Array(2,1),
-												 new Array(2,2),
-												 new Array(2,3)),
-									new Array(
-												 new Array(3,2),
-												 new Array(3,1),
-												 new Array(1,2),
-												 new Array(2,2),
-												 new Array(3,2))
-									);
+                         new Array(2,3),
+                         new Array(1,1),
+                         new Array(1,2),
+                         new Array(1,3),
+                         new Array(2,3)),
+            new Array(
+                         new Array(3,2),
+                         new Array(1,1),
+                         new Array(1,2),
+                         new Array(2,1),
+                         new Array(3,1)),
+            new Array(
+                         new Array(2,3),
+                         new Array(1,1),
+                         new Array(2,1),
+                         new Array(2,2),
+                         new Array(2,3)),
+            new Array(
+                         new Array(3,2),
+                         new Array(3,1),
+                         new Array(1,2),
+                         new Array(2,2),
+                         new Array(3,2))
+            );
 BlockLayout[4] = new Array(new Array(
-												 new Array(2,3),
-												 new Array(1,3),
-												 new Array(2,2),
-												 new Array(2,3),
-												 new Array(2,1)),
-									new Array(
-												 new Array(3,2),
-												 new Array(1,1),
-												 new Array(1,2),
-												 new Array(2,2),
-												 new Array(3,2)),
-									new Array(
-												 new Array(2,3),
-												 new Array(1,1),
-												 new Array(2,1),
-												 new Array(1,2),
-												 new Array(1,3)),
-									new Array(
-												 new Array(3,2),
-												 new Array(1,1),
-												 new Array(2,1),
-												 new Array(3,1),
-												 new Array(3,2))
-									);
+                         new Array(2,3),
+                         new Array(1,3),
+                         new Array(2,2),
+                         new Array(2,3),
+                         new Array(2,1)),
+            new Array(
+                         new Array(3,2),
+                         new Array(1,1),
+                         new Array(1,2),
+                         new Array(2,2),
+                         new Array(3,2)),
+            new Array(
+                         new Array(2,3),
+                         new Array(1,1),
+                         new Array(2,1),
+                         new Array(1,2),
+                         new Array(1,3)),
+            new Array(
+                         new Array(3,2),
+                         new Array(1,1),
+                         new Array(2,1),
+                         new Array(3,1),
+                         new Array(3,2))
+            );
 BlockLayout[5] = new Array(new Array(
-												 new Array(1,4),
-												 new Array(1,1),
-												 new Array(1,2),
-												 new Array(1,3),
-												 new Array(1,4)),
-									new Array(
-												 new Array(4,1),
-												 new Array(1,1),
-												 new Array(2,1),
-												 new Array(3,1),
-												 new Array(4,1))
-									);
+                         new Array(1,4),
+                         new Array(1,1),
+                         new Array(1,2),
+                         new Array(1,3),
+                         new Array(1,4)),
+            new Array(
+                         new Array(4,1),
+                         new Array(1,1),
+                         new Array(2,1),
+                         new Array(3,1),
+                         new Array(4,1))
+            );
 BlockLayout[6] = new Array(new Array(
-												 new Array(3,2),
-												 new Array(2,1),
-												 new Array(1,2),
-												 new Array(2,2),
-												 new Array(3,2)),
-									new Array(
-												 new Array(2,3),
-												 new Array(1,1),
-												 new Array(1,2),
-												 new Array(2,2),
-												 new Array(1,3)),
-									new Array(
-												 new Array(3,2),
-												 new Array(1,1),
-												 new Array(2,1),
-												 new Array(2,2),
-												 new Array(3,1)),
-									new Array(
-												 new Array(2,3),
-												 new Array(1,2),
-												 new Array(2,1),
-												 new Array(2,2),
-												 new Array(2,3))
-									);
+                         new Array(3,2),
+                         new Array(2,1),
+                         new Array(1,2),
+                         new Array(2,2),
+                         new Array(3,2)),
+            new Array(
+                         new Array(2,3),
+                         new Array(1,1),
+                         new Array(1,2),
+                         new Array(2,2),
+                         new Array(1,3)),
+            new Array(
+                         new Array(3,2),
+                         new Array(1,1),
+                         new Array(2,1),
+                         new Array(2,2),
+                         new Array(3,1)),
+            new Array(
+                         new Array(2,3),
+                         new Array(1,2),
+                         new Array(2,1),
+                         new Array(2,2),
+                         new Array(2,3))
+            );
 var pValues = new Array(0, 40, 100, 300, 1200);
 var levelSpeed = new Array(1000, 
-								   1000, 950, 900, 850, 800,
-									780, 760, 740, 720, 700, 
-									680, 660, 640, 620, 600,
-									590, 580, 570, 560, 550,
-									540, 530, 520, 510, 500);
+                           1000, 950, 900, 850, 800,
+                            780, 760, 740, 720, 700, 
+                            680, 660, 640, 620, 600,
+                            590, 580, 570, 560, 550,
+                            540, 530, 520, 510, 500);
 var Board = new Array();
 var score = 0;
 var lines = 0;
