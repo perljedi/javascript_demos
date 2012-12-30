@@ -45,6 +45,9 @@ conway_test: $(DOCTEST) conway
 	$(CP) tests/ConwaysLifeTests.htm $(WEBDOC)
 	$(CP) tests/spec/*.js $(DOCTEST)
 
+clean:
+	rm -rf $(BUILDDIR)
+
 build: conway conway_test fallingblocks life4 life5
 
 install: build

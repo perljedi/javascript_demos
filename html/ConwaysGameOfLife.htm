@@ -3,6 +3,11 @@
 <head>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
 <link rel="stylesheet" href="css/life5.css" />
+  <script language='javascript'>
+      function require(){
+
+      }
+  </script>
 <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
 <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
 <script src="js/LifeCell.js"></script>
@@ -31,9 +36,12 @@
         <span class="ui-button-text">Randomize</span>
     </button>
     <span stlye='border-left:thin solid red;'><img src='images/spacer.gif' width=20></span>
-    <input type='checkbox' id='showCount' name='showCount' checked>
+    <input type='checkbox' id='showCount' name='showCount'>
     <label for='showCount'>Show Counts</label>
     <span stlye='border-left:thin solid red;'><img src='images/spacer.gif' width=20></span>
+    <input type='checkbox' id='displayGrid' name='displayGrid'>
+    <label for='displayGrid'>Grid</label>
+    <span stlye='border-left:thin solid red;'><img src='images/spacer.gif' width=20></ span>
 	<output id="itteration">0</output>
 </div>
 <div id='canvasContainer'>

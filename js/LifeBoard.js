@@ -103,6 +103,14 @@ LifeBoard = function(cols, rows) {
 
         return true;
     };
+    this.clear = function() {
+        var cells = this.getCells();
+        while(cells.hasMore()){
+            cells.getNext().kill();
+        }
+        currentItteration = 0;
+    };
+
     this.getCells = function() {
         var r = 0;
         var c = 0;
@@ -114,6 +122,17 @@ LifeBoard = function(cols, rows) {
                     if(++r == height){ c++; r=0; } 
                     return el; 
                 }};
+    };
+    this.randomize = function(){
+        var cells = this.getCells();
+        while(cells.hasMore()){
+            if(Math.random()*100 < 33){
+                cells.getNext().revive();
+            }else{
+                cells.getNext().kill();
+            }
+        }
+        currentItteration = 0;
     };
 };
 

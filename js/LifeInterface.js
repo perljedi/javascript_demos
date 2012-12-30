@@ -1,4 +1,5 @@
 var showCounts = false;
+var showGrid   = false;
 function drawBoard(){
     var cvs = document.getElementById("board");
     cvs.width = gameBoard.getWidth()*25;
@@ -15,9 +16,25 @@ function drawBoard(){
             ctx.fillRect(c*25, r*25, 25, 25);
             if(showCounts){
                 ctx.fillStyle="#00ff00";
-                ctx.fillText(gameBoard.getCell(c,r).countLiveNeighbors(), (c*25)+12, (r*25)+12);
+                ctx.fillText(gameBoard.getCell(c,r).countLiveNeighbors(), (c*25)+12, (r*25)+15);
             }
         }
+    }
+    if(showGrid){
+        ctx.beginPath();
+        var tHeight = gameBoard.getHeight()*25;
+        for(var c=1;c<gameBoard.getWidth(); c++){
+            var coff=c*25;
+            ctx.moveTo(coff,0);
+            ctx.lineTo(coff,tHeight);
+        }
+        var tWidth = gameBoard.getWidth()*25;
+        for(var r=1;r<gameBoard.getHeight(); r++){
+            var roff=25*r;
+            ctx.moveTo(0, roff);
+            ctx.lineTo(tWidth, roff);
+        }
+        ctx.stroke();
     }
     $("#itteration").html(gameBoard.itteration());
 }
@@ -38,8 +55,6 @@ $(document).ready(function(){
 
                     var nWidth = Math.round((ui.size.width)/25);
                     var nHeight = Math.round((ui.size.height)/25);
-                    alert(nWidth+"="+ui.size.width);
-                    alert(nHeight+"="+ui.size.height);
                     $("#cellWidth").val(nWidth);
                     gameBoard.setWidth(nWidth);
                     $("#cellHeight").val(nHeight);
@@ -63,6 +78,10 @@ $(document).ready(function(){
         $("#clear_button").click(clearBoard);
         $("#showCount").button().click(function(){
             showCounts=!showCounts;
+            drawBoard();
+        });
+        $("#displayGrid").button().click(function(){
+            showGrid=!showGrid;
             drawBoard();
         });
         $(document).bind("keypress", keypress_animate);
@@ -96,22 +115,12 @@ function toggleAnimation(){
 }
 
 function randomizeBoard(){
-        gameBoard.itteration=0;
-        for(var co=0; co<gameBoard.cells.length; co++){
-                if(Math.random() < 0.22){
-                        gameBoard.cells[co].isAlive=true;
-                }else{
-                        gameBoard.cells[co].isAlive=false;
-                }
-        }
-        drawBoard();
+    gameBoard.randomize();
+    drawBoard();
 }
 
 function clearBoard(){
-    for(var co=0; co<gameBoard.cells.length; co++){
-                gameBoard.cells[co].isAlive=false;
-    }
-        gameBoard.itteration=0;
+    gameBoard.clear();
     drawBoard();
 }
 
