@@ -48,7 +48,10 @@ conway_test: $(DOCTEST) conway
 clean:
 	rm -rf $(BUILDDIR)
 
-build: conway conway_test fallingblocks life4 life5
+sudoku: $(SCRIPTDIR)/SudokuApp.js $(STYLEDIR)/sudoku.css
+	$(CP) html/Sudoku.htm $(WEBDOC)
+
+build: conway conway_test fallingblocks life4 life5 sudoku
 
 install: build
 	if [ -d $(SCRIPTDIR)/node_modules ]; then rm -rf $(SCRIPTDIR)/node_modules; fi

@@ -1,0 +1,39 @@
+.control-dial {
+        border-spacing:0px;
+        border-padding:0px;
+}
+.control-dial td {
+        width: 60px;
+        height: 60px;
+        vertical-align:middle;
+        text-align:center;
+        border:1px #999 solid;
+}
+.sudoku-cell {
+        width: 60px;
+        height: 60px;
+        vertical-align:middle;
+        text-align:center;
+        border:1px #999 solid;
+}
+.sudoku-cell:hover {
+        background-color: yellow;
+}
+.sudoku-board {
+        border-spacing:0px;
+        border-padding:0px;
+}
+
+.sudoku-board tr:nth-child(3n+1) td{
+        border-top:2px black solid;
+}
+.sudoku-board td:nth-child(3n+1) {
+        border-left:2px black solid;
+}
+.sudoku-board td:last-child {
+        border-right:2px black solid;
+}
+.sudoku-board tr:last-child td {
+        border-bottom:2px black solid;
+}
+

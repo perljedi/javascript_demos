@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+  <head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>    
+    <script src="js/angular.min.js"></script>
+    <script src="js/SudokuApp.js"></script>
+    <link rel="stylesheet" href="css/sudoku.css" />
+    <link rel="stylesheet" href="css/jqueryui.css" />
+<script>
+$(document).ready(function(){
+	$(document).on("keypress", function(event){
+		if(event.which > 48 && event.which < 58){
+			angular.element($("#sudokuGame")).scope().$apply(function(scope){scope.currentNumber = event.which - 48; });
+		}
+	});
+    $("button").button();
+});
+</script>
+  </head>
+  <body ng-app="AngularSudoku">
+    <div id="sudokuGame" ng-controller="SudokuGame">
+	<table><tr><td>
+	<table class='sudoku-board'>
+		<tr ng-repeat="row in rows">
+			<td class='sudoku-cell' ng-repeat="cell in rows[$index]" ng-click="setCellValue(cell)">{{ cell.value }}</td>
+		</tr>
+	</table></td><td>
+		<table class='control-dial'>
+			<tr>
+				<td ng-click="setCurrentNumber(1)" ng-style="getControlStyle(1)">1</td>
+                                <td ng-click="setCurrentNumber(2)" ng-style="getControlStyle(2)">2</td>
+                                <td ng-click="setCurrentNumber(3)" ng-style="getControlStyle(3)">3</td>
+			</tr>
+                        <tr>
+                                <td ng-click="setCurrentNumber(4)" ng-style="getControlStyle(4)">4</td>
+                                <td ng-click="setCurrentNumber(5)" ng-style="getControlStyle(5)">5</td>
+                                <td ng-click="setCurrentNumber(6)" ng-style="getControlStyle(6)">6</td>
+                        </tr>
+                        <tr>
+                                <td ng-click="setCurrentNumber(7)" ng-style="getControlStyle(7)">7</td>
+                                <td ng-click="setCurrentNumber(8)" ng-style="getControlStyle(8)">8</td>
+                                <td ng-click="setCurrentNumber(9)" ng-style="getControlStyle(9)">9</td>
+                        </tr>
+			<tr>
+                <td colspan=3 class='ui-widget'><button>Check</button></td>
+			</tr>
+		</table>
+	</td></tr></table>
+    </div>
+  </body>
+</html>
