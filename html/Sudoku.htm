@@ -10,9 +10,10 @@
 <script>
 $(document).ready(function(){
 	$(document).on("keypress", function(event){
-		if(event.which > 48 && event.which < 58){
+        console.log(event.which);
+		if(event.which > 47 && event.which < 58){
 			angular.element($("#sudokuGame")).scope().$apply(function(scope){scope.currentNumber = event.which - 48; });
-		}
+        }
 	});
     $("button").button();
 });
@@ -23,9 +24,9 @@ $(document).ready(function(){
 	<table><tr><td>
 	<table class='sudoku-board'>
 		<tr ng-repeat="row in rows">
-			<td class='sudoku-cell' ng-repeat="cell in rows[$index]" ng-click="setCellValue(cell)">{{ cell.value }}</td>
+			<td class='sudoku-cell bindToMe' ng-repeat="cell in rows[$index]" ng-click="setCellValue(cell)" ng-style="getCellStyle(cell)">{{ cell.value }}</td>
 		</tr>
-	</table></td><td>
+	</table></td><td class='input-controlls'>
 		<table class='control-dial'>
 			<tr>
 				<td ng-click="setCurrentNumber(1)" ng-style="getControlStyle(1)">1</td>
@@ -43,9 +44,19 @@ $(document).ready(function(){
                                 <td ng-click="setCurrentNumber(9)" ng-style="getControlStyle(9)">9</td>
                         </tr>
 			<tr>
-                <td colspan=3 class='ui-widget'><button>Check</button></td>
+                <td colspan=3 class='controllButtons'>
+                    <button ng-click="validateBoard($event)">Check</button>
+                    <button ng-click="solvePuzzel()">Solve</button>
+                </td>
 			</tr>
-		</table>
+            <tr><td colspan=3 class='errorMessages'>{{ errorMessage }} </td></tr>
+        </table>
+        <table><tr><td>
+        <textarea rows=10 cols=40 ng-model='importExportJson'></textarea>
+</td></tr><tr><td>
+        <button ng-click="exportCurrentBoard()">Export to Json</button>
+        <button ng-click="importBoardState()">Import from Json</button>
+</td></tr></table>
 	</td></tr></table>
     </div>
   </body>

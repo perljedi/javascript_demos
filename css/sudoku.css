@@ -1,12 +1,20 @@
 .control-dial {
         border-spacing:0px;
         border-padding:0px;
+        text-align:center;
+        margin:auto;
+}
+.input-contolls {
+    text-align:center;
+    width:355px;
 }
 .control-dial td {
         width: 60px;
         height: 60px;
         vertical-align:middle;
         text-align:center;
+        font-weight: bold;
+        font-size: 14pt;
         border:1px #999 solid;
 }
 .sudoku-cell {
@@ -14,6 +22,8 @@
         height: 60px;
         vertical-align:middle;
         text-align:center;
+        font-weight: bold;
+        font-size: 14pt;
         border:1px #999 solid;
 }
 .sudoku-cell:hover {
@@ -36,4 +46,11 @@
 .sudoku-board tr:last-child td {
         border-bottom:2px black solid;
 }
-
+.controllButtons{
+    border:none;
+}
+.errorMessages {
+    display:none;
+    border:none;
+    color:red;
+}
