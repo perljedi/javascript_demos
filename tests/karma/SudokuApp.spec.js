@@ -60,6 +60,33 @@ describe("Sudoku App", function(){
                 expect(scope.rows[0][0].isError).toBeTruthy();
                 expect(scope.rows[0][1].isError).toBeTruthy();
             });
+            it("clears 'isError' on non-conflicting cells", function(){
+                scope.rows[0][0].value=1;
+                scope.rows[0][0].isError=true;
+                scope.rows[0][1].value=2;
+                scope.validateBoard();
+                expect(scope.rows[0][0].isError).toBeFalsy();
+            });
+            it("clears 'isError' from fields with no value", function(){
+                scope.rows[0][0].value="";
+                scope.rows[0][0].isError=true;
+                scope.validateBoard();
+                expect(scope.rows[0][0].isError).toBeFalsy();
+            });
+        });
+        describe("getValidValuesForCell", function(){
+            it("returns a list of all numbers which would not cause conflict", function(){
+                spyOn(scope, 'canCellTakeValue').andReturn(true);
+                var validValues = scope.getValidValuesForCell(scope.cells[0]);
+                expect(validValues).toBeDefined();
+                expect(validValues.length).toBe(9);
+            });
+            it("returns an empty list if all values taken", function(){
+                spyOn(scope, 'canCellTakeValue').andReturn(false);
+                var validValues = scope.getValidValuesForCell(scope.cells[0]);
+                expect(validValues).toBeDefined();
+                expect(validValues.length).toBe(0);
+            });
         });
         describe("solvePuzzle", function(){
             it("checks that puzzle is in valid state before trying to solve",function(){

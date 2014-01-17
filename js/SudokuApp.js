@@ -50,6 +50,8 @@ var SudokuGame = AngularSudoku.controller("SudokuGame", function($scope){
                 }else{
                     cell.isError=false;
                 }
+            }else{
+                cell.isError=false;
             }
         });
         return isValid;
