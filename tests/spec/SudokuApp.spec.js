@@ -63,6 +63,9 @@ require(["lib/angular", "lib/angular-mocks", "SudokuApp"], function(){
                     expect(scope.rows[0][1].isError).toBeTruthy();
                 });
             });
+            describe("solvePuzzle", function(){
+
+            });
         });
     });
 });

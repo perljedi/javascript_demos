@@ -74,7 +74,7 @@ var SudokuGame = AngularSudoku.controller("SudokuGame", function($scope){
             $scope.cubes[cell.cube].push(cell);
         });
     }
-    $scope.solvePuzzel = function(){
+    $scope.solvePuzzle = function(){
         var changed=true;
         while(changed){
             changed=false;
