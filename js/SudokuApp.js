@@ -1,4 +1,3 @@
-require(["lib/angular", "lib/jquery-1.10.2"], function(){
 var AngularSudoku = angular.module("AngularSudoku", []);
 
 var SudokuGame = AngularSudoku.controller("SudokuGame", function($scope){
@@ -137,5 +136,4 @@ var SudokuGame = AngularSudoku.controller("SudokuGame", function($scope){
                     return val.value == value;
         }).length > 0;
     }
-});
 });
