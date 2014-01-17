@@ -1,4 +1,4 @@
-require("./LifeCell.js");
+require(["LifeCell"], function(){
 
 LifeBoard = function(cols, rows) {
 	var currentItteration=0;
@@ -139,4 +139,4 @@ LifeBoard = function(cols, rows) {
 LifeBoard.prototype.isA = function(){
     return "LifeBoard";
 };
-
+});

@@ -1,4 +1,4 @@
-require("../LifeCell.js");
+require(["LifeCell"], function(){
 
 describe("LifeCell", function() {
     var cell;
@@ -70,4 +70,5 @@ describe("LifeCell", function() {
         }
     }
 
+});
 });

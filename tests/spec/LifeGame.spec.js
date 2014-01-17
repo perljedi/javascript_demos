@@ -1,5 +1,4 @@
-require("../LifeBoard.js");
-require("../LifeCell.js");
+require(["LifeBoard","LifeCell"], function(){
 
 describe("The Game of Life", function(){
     var board;
@@ -29,4 +28,4 @@ describe("The Game of Life", function(){
         }
     });
 });
-
+});

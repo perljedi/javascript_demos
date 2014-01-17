@@ -3,6 +3,7 @@ TARGET=$(HOME)/
 WEBDOC=$(BUILDDIR)/docs
 STYLEDIR=$(WEBDOC)/css
 SCRIPTDIR=$(WEBDOC)/js
+LIBDIR=$(WEBDOC)/js/lib
 DOCTEST=$(SCRIPTDIR)/spec
 CP=/bin/cp
 MKDIR=/bin/mkdir -p
@@ -17,6 +18,8 @@ $(STYLEDIR): $(WEBDOC)
 
 $(SCRIPTDIR): $(WEBDOC)
 	if [ ! -d $@ ]; then $(MKDIR) $(SCRIPTDIR); fi
+$(LIBDIR): $(WEBDOC)
+	if [ ! -d $@ ]; then $(MKDIR) $(LIBDIR); fi
 
 $(DOCTEST): $(WEBDOC)
 	if [ ! -d $@ ]; then $(MKDIR) $(DOCTEST); fi
@@ -25,6 +28,9 @@ directories: $(WEBDOC) $(DOCTEST) $(STYLEDIR) $(SCRIPTDIR)
 
 $(STYLEDIR)/%.css : $(STYLEDIR)
 	$(CP) css/$(@F) $@
+
+$(LIBDIR)/%.js : $(LIBDIR)
+	$(CP) lib/$(@F) $@
 
 $(SCRIPTDIR)/%.js : $(SCRIPTDIR)
 	$(CP) js/$(@F) $@
@@ -48,7 +54,7 @@ conway_test: $(DOCTEST) conway
 clean:
 	rm -rf $(BUILDDIR)
 
-sudoku: $(SCRIPTDIR)/SudokuApp.js $(STYLEDIR)/sudoku.css
+sudoku: $(SCRIPTDIR)/SudokuApp.js $(STYLEDIR)/sudoku.css $(LIBDIR)/angular.js $(LIBDIR)/angular-mocks.js
 	$(CP) html/Sudoku.htm $(WEBDOC)
 
 build: conway conway_test fallingblocks life4 life5 sudoku
@@ -59,8 +65,11 @@ install: build
 
 .ONESHELL:
 test: build
-	$(CP) tests/grunt.js $(SCRIPTDIR);
+	$(CP) tests/Gruntfile.js $(SCRIPTDIR);
+	$(CP) tests/require.js $(SCRIPTDIR);
 	cd $(SCRIPTDIR); \
-	npm install grunt-jasmine-node; \
+	npm install grunt-contrib-jasmine --save-dev; \
+	npm install grunt-template-jasmine-requirejs; \
+	npm install grunt-lib-phantomjs; \
 	grunt
 

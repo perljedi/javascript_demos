@@ -1,5 +1,4 @@
-require("../LifeBoard.js");
-require("../LifeCell.js");
+require(["LifeBoard","LifeCell"], function(){
 
 describe("LifeBoard", function() {
     var board;
@@ -87,4 +86,5 @@ describe("LifeBoard", function() {
         });
 
     });
+});
 });
