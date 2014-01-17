@@ -54,7 +54,7 @@ conway_test: $(DOCTEST) conway
 clean:
 	rm -rf $(BUILDDIR)
 
-sudoku: $(SCRIPTDIR)/SudokuApp.js $(STYLEDIR)/sudoku.css $(LIBDIR)/angular.js $(LIBDIR)/angular-mocks.js
+sudoku: $(SCRIPTDIR)/SudokuApp.js $(STYLEDIR)/sudoku.css $(LIBDIR)/jquery-1.10.2.js $(LIBDIR)/angular.js $(LIBDIR)/angular-mocks.js
 	$(CP) html/Sudoku.htm $(WEBDOC)
 
 build: conway conway_test fallingblocks life4 life5 sudoku

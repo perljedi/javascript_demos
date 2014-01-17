@@ -1,4 +1,4 @@
-require(["lib/angular"], function(){
+require(["lib/angular", "lib/jquery-1.10.2"], function(){
 var AngularSudoku = angular.module("AngularSudoku", []);
 
 var SudokuGame = AngularSudoku.controller("SudokuGame", function($scope){
@@ -33,6 +33,7 @@ var SudokuGame = AngularSudoku.controller("SudokuGame", function($scope){
         return styles;
 	}
     $scope.validateBoard = function(){
+        var isValid = true;
         angular.forEach($scope.cells, function(cell,index){
             if(cell.value != ""){
                 var matchedRowItems  = jQuery.grep($scope.rows[cell.row], function(val,i){ 
@@ -46,11 +47,13 @@ var SudokuGame = AngularSudoku.controller("SudokuGame", function($scope){
                 });
                 if(matchedRowItems.length > 1 || matchedCubItems.length > 1 || matchedColItems > 1){
                     cell.isError=true;
+                    isValid = false;
                 }else{
                     cell.isError=false;
                 }
             }
         });
+        return isValid;
     }
     $scope.getCellStyle = function(cell){
         var styles={};
