@@ -4,6 +4,9 @@
         text-align:center;
         margin:auto;
 }
+.io-buttons{
+    text-align:center;
+}
 .input-contolls {
     text-align:center;
     width:355px;
@@ -16,6 +19,7 @@
         font-weight: bold;
         font-size: 14pt;
         border:1px #999 solid;
+        cursor: pointer;
 }
 .sudoku-cell {
         width: 60px;
@@ -25,6 +29,7 @@
         font-weight: bold;
         font-size: 14pt;
         border:1px #999 solid;
+        cursor: pointer;
 }
 .sudoku-cell:hover {
         background-color: yellow;

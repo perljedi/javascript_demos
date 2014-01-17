@@ -7,11 +7,11 @@
         }
     </script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>    
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script> 
     <script src="js/angular.min.js"></script>
     <script src="js/SudokuApp.js"></script>
     <link rel="stylesheet" href="css/sudoku.css" />
-    <link rel="stylesheet" href="css/jqueryui.css" />
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
 <script>
 $(document).ready(function(){
 	$(document).on("keypress", function(event){
@@ -20,7 +20,6 @@ $(document).ready(function(){
 			angular.element($("#sudokuGame")).scope().$apply(function(scope){scope.currentNumber = event.which - 48; });
         }
 	});
-    $("button").button();
 });
 </script>
   </head>
@@ -50,17 +49,17 @@ $(document).ready(function(){
                         </tr>
 			<tr>
                 <td colspan=3 class='controllButtons'>
-                    <button ng-click="validateBoard($event)">Check</button>
-                    <button ng-click="solvePuzzle()">Solve</button>
+                    <button ng-click="validateBoard($event)" class='ui-button ui-button-text-only ui-state-default ui-corner-all'><span class="ui-button-text">Check</span></button>
+                    <button ng-click="solvePuzzle()" class='ui-button ui-button-text-only ui-state-default ui-corner-all'><span class="ui-button-text">Solve</span></button>
                 </td>
 			</tr>
             <tr><td colspan=3 class='errorMessages'>{{ errorMessage }} </td></tr>
         </table>
         <table><tr><td>
         <textarea rows=10 cols=40 ng-model='importExportJson'></textarea>
-</td></tr><tr><td>
-        <button ng-click="exportCurrentBoard()">Export to Json</button>
-        <button ng-click="importBoardState()">Import from Json</button>
+</td></tr><tr><td class='io-buttons'>
+        <button ng-click="exportCurrentBoard()"  class='ui-button ui-button-text-only ui-state-default ui-corner-all'><span class="ui-button-text">Export to Json</span></button>
+        <button ng-click="importBoardState()" class='ui-button ui-button-text-only ui-state-default ui-corner-all'><span class="ui-button-text">Import from Json</span></button>
 </td></tr></table>
 	</td></tr></table>
     </div>
