@@ -75,27 +75,37 @@ var SudokuGame = AngularSudoku.controller("SudokuGame", function($scope){
         });
     }
     $scope.solvePuzzle = function(){
-        var changed=true;
-        while(changed){
-            changed=false;
-            angular.forEach($scope.cells, function(cell, index){
-                if(cell.value == ""){
-                    var values=[];
-                    for(var val=1; val<10; val++){
-                        if($scope.canCellTakeValue(cell, val)){
-                            values.push(val);
-                        }
-                    }
-                    if(values.length == 1){
-                        cell.value = values[0];
-                        changed=true;
-                    }
-                }
-            });
-            changed = $scope.checkValuesInGroup($scope.rows) || changed;
-            changed = $scope.checkValuesInGroup($scope.columns) || changed;
-            changed = $scope.checkValuesInGroup($scope.cubes) || changed;
+        if($scope.validateBoard()){
+            var changed=true;
+            while(changed){
+                changed = $scope.checkValuesInCells();
+                changed = $scope.checkValuesInGroup($scope.rows) || changed;
+                changed = $scope.checkValuesInGroup($scope.columns) || changed;
+                changed = $scope.checkValuesInGroup($scope.cubes) || changed;
+            }
         }
+    }
+    $scope.checkValuesInCells = function(){
+        var changed = false;
+        angular.forEach($scope.cells, function(cell, index){
+            if(cell.value == ""){
+                var values=$scope.getValidValuesForCell(cell);
+                if(values.length == 1){
+                    cell.value = values[0];
+                    changed=true;
+                }
+            }
+        });
+        return changed;
+    }
+    $scope.getValidValuesForCell = function(cell){
+        var values=[];
+        for(var val=1; val<10; val++){
+            if($scope.canCellTakeValue(cell, val)){
+                values.push(val);
+            }
+        }
+        return values;
     }
     $scope.checkValuesInGroup = function(groups){
         var changed = false;

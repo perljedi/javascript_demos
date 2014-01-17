@@ -64,7 +64,11 @@ require(["lib/angular", "lib/angular-mocks", "SudokuApp"], function(){
                 });
             });
             describe("solvePuzzle", function(){
-
+                it("checks that puzzle is in valid state before trying to solve",function(){
+                    spyOn(scope, 'validateBoard');
+                    scope.solvePuzzle();
+                    expect(scope.validateBoard).toHaveBeenCalled();
+                });
             });
         });
     });
