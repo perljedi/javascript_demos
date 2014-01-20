@@ -51,6 +51,7 @@ $(document).ready(function(){
                 <td colspan=3 class='controllButtons'>
                     <button ng-click="validateBoard($event)" class='ui-button ui-button-text-only ui-state-default ui-corner-all'><span class="ui-button-text">Check</span></button>
                     <button ng-click="solvePuzzle()" class='ui-button ui-button-text-only ui-state-default ui-corner-all'><span class="ui-button-text">Solve</span></button>
+                    <button ng-click="generatePuzzle()" class='ui-button ui-button-text-only ui-state-default ui-corner-all'><span class="ui-button-text">Generate</span></button>
                 </td>
 			</tr>
             <tr><td colspan=3 class='errorMessages'>{{ errorMessage }} </td></tr>

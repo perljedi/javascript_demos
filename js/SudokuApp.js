@@ -1,10 +1,23 @@
 var AngularSudoku = angular.module("AngularSudoku", []);
 
 var SudokuGame = AngularSudoku.controller("SudokuGame", function($scope){
-	$scope.cells = [];
-	$scope.rows = [[],[],[],[],[],[],[],[],[]];
-	$scope.columns = [[],[],[],[],[],[],[],[],[]];
-	$scope.cubes = [[],[],[],[],[],[],[],[],[]];
+    $scope.initBoard = function(){
+        $scope.cells = [];
+        $scope.rows = [[],[],[],[],[],[],[],[],[]];
+        $scope.columns = [[],[],[],[],[],[],[],[],[]];
+        $scope.cubes = [[],[],[],[],[],[],[],[],[]];
+        for(var r = 0; r<9; r++){
+            for(var c = 0; c< 9; c++){
+                var cn = 3 * (parseInt(r/3)) + parseInt(c/3);
+                var cell = {row:r, column:c, value:"", cube:cn, isError:false};
+                $scope.cells.push(cell);
+                $scope.rows[r][c] = cell;
+                $scope.columns[c][r] = cell;
+                $scope.cubes[cn].push(cell);
+            }
+        }
+    }
+    $scope.initBoard();
 	$scope.currentNumber = 1;
     $scope.errorMessage;
     $scope.importExportJson = "";
@@ -51,7 +64,13 @@ var SudokuGame = AngularSudoku.controller("SudokuGame", function($scope){
                     cell.isError=false;
                 }
             }else{
-                cell.isError=false;
+                var values = $scope.getValidValuesForCell(cell);
+                if(values.length < 1){
+                    cell.isError=true;
+                    isValid = false;
+                }else{
+                    cell.isError=false;
+                }
             }
         });
         return isValid;
@@ -84,6 +103,12 @@ var SudokuGame = AngularSudoku.controller("SudokuGame", function($scope){
                 changed = $scope.checkValuesInGroup($scope.columns) || changed;
                 changed = $scope.checkValuesInGroup($scope.cubes) || changed;
             }
+            var unkownCells = jQuery.grep($scope.cells, function(cell, i){
+                return cell.value == "";
+            });
+            return unkownCells.length == 0;
+        }else{
+            return false;
         }
     }
     $scope.checkValuesInCells = function(){
@@ -137,5 +162,34 @@ var SudokuGame = AngularSudoku.controller("SudokuGame", function($scope){
         return jQuery.grep(unit, function(val,i){
                     return val.value == value;
         }).length > 0;
+    }
+    $scope.generatePuzzle = function(){
+        var count=0;
+        $scope.initBoard();
+        var solveable = false;
+        $scope.exportCurrentBoard();
+        while(! solveable){
+            $scope.importBoardState();
+            var changed = false;
+            while(! changed){
+                if(count++ > 1000){
+                    console.log("bad");
+                    return;
+                }
+                var col = Math.floor((Math.random()*9));
+                var row = Math.floor((Math.random()*9));
+                if($scope.rows[row][col].value == ""){
+                    var val = Math.floor((Math.random()*9)+1);
+                    if($scope.canCellTakeValue($scope.rows[row][col], val)){
+                        $scope.rows[row][col].value = val;
+                        changed = true;
+                    }
+                }
+            }
+            $scope.$apply($scope.exportCurrentBoard());
+            debugger;
+            solveable = $scope.solvePuzzle();  
+        }
+        console.log("good");
     }
 });
