@@ -8,7 +8,8 @@
     </script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script> 
-    <script src="js/angular.min.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/angular-animate.js"></script>
     <script src="js/SudokuApp.js"></script>
     <link rel="stylesheet" href="css/sudoku.css" />
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
@@ -28,7 +29,7 @@ $(document).ready(function(){
 	<table><tr><td>
 	<table class='sudoku-board'>
 		<tr ng-repeat="row in rows">
-			<td class='sudoku-cell bindToMe' ng-repeat="cell in rows[$index]" ng-click="setCellValue(cell)" ng-style="getCellStyle(cell)">{{ cell.value }}</td>
+			<td class='sudoku-cell bindToMe' ng-repeat="cell in rows[$index]" ng-click="setCellValue(cell, $event)" ng-style="getCellStyle(cell)">{{ cell.value }}</td>
 		</tr>
 	</table></td><td class='input-controlls'>
 		<table class='control-dial'>

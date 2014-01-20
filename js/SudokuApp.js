@@ -1,6 +1,6 @@
-var AngularSudoku = angular.module("AngularSudoku", []);
+var AngularSudoku = angular.module("AngularSudoku", ["ngAnimate"]);
 
-var SudokuGame = AngularSudoku.controller("SudokuGame", function($scope){
+var SudokuGame = AngularSudoku.controller("SudokuGame", ["$scope", "$animate", function($scope,$animate){
     $scope.initBoard = function(){
         $scope.cells = [];
         $scope.rows = [[],[],[],[],[],[],[],[],[]];
@@ -31,8 +31,10 @@ var SudokuGame = AngularSudoku.controller("SudokuGame", function($scope){
 			$scope.cubes[cn].push(cell);
 		}
 	}
-	$scope.setCellValue = function(cell, newValue){
-		cell.value = $scope.currentNumber == 0 ? "" : $scope.currentNumber;
+	$scope.setCellValue = function(cell, $event){
+        debugger
+        $animate.addClass($($event.target), 'redCell');
+		cell.value = $scope.currentNumber;
 	}
 	$scope.setCurrentNumber = function(number){
 		$scope.currentNumber = number;
@@ -192,4 +194,4 @@ var SudokuGame = AngularSudoku.controller("SudokuGame", function($scope){
         }
         console.log("good");
     }
-});
+}]);
